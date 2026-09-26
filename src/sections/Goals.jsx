@@ -2,6 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { SectionTitle } from '../components/SectionTitle';
 import { goals } from '../data/portfolioData';
+import { Briefcase, BrainCircuit, Code2, Trophy, Users } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa6';
+
+const goalIcons = { Code2, Trophy, BrainCircuit, Github: FaGithub, Briefcase, Users };
 
 export function Goals() {
   return (
@@ -26,6 +30,10 @@ export function Goals() {
             >
               <div className="goal-card__num">0{goal.id}</div>
               <div className="goal-card__content">
+                {(() => {
+                  const Icon = goalIcons[goal.icon];
+                  return Icon ? <Icon size={18} aria-hidden="true" /> : null;
+                })()}
                 <h3 className="goal-card__title">{goal.title}</h3>
                 <p className="goal-card__desc">{goal.description}</p>
               </div>

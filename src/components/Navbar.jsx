@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
+import React, { useEffect, useState } from 'react';
+import { useTheme } from '../context/useTheme';
 import { personal, navLinks } from '../data/portfolioData';
 import { Sun, Moon, Code2 } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
@@ -11,16 +11,25 @@ export function Navbar({ activeSection }) {
   const toggleMobileMenu = () => setMobileMenuOpen(prev => !prev);
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') closeMobileMenu();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <header className="navbar">
       <div className="navbar__inner">
-        <a href="#" className="navbar__logo" aria-label="Manoj Le Home">
+        <a href="#" className="navbar__logo" aria-label="Manoj L E home">
           <Code2 size={20} className="text-accent" />
           <span>{personal.name}</span>
         </a>
 
         {/* Desktop Links */}
-        <nav className="navbar__links" aria-label="Main Navigation">
+        <nav className="navbar__links" aria-label="Main navigation">
           {navLinks.map((link) => {
             const sectionId = link.href.replace('#', '');
             const isActive = activeSection === sectionId;
@@ -71,6 +80,7 @@ export function Navbar({ activeSection }) {
             onClick={toggleMobileMenu}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <span />
             <span />
@@ -81,7 +91,7 @@ export function Navbar({ activeSection }) {
 
       {/* Mobile Links */}
       {mobileMenuOpen && (
-        <div className="navbar__mobile open">
+        <nav id="mobile-navigation" className="navbar__mobile open" aria-label="Mobile navigation">
           {navLinks.map((link) => {
             const sectionId = link.href.replace('#', '');
             const isActive = activeSection === sectionId;
@@ -96,7 +106,7 @@ export function Navbar({ activeSection }) {
               </a>
             );
           })}
-        </div>
+        </nav>
       )}
     </header>
   );

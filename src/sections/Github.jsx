@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { personal } from '../data/portfolioData';
 import { Button } from '../components/Button';
-import { ExternalLink, Code2 } from 'lucide-react';
+import { Code2 } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa6';
 
 export function GithubSection() {

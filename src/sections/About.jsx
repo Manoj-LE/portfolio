@@ -51,7 +51,9 @@ export function About() {
               {!imgError ? (
                 <img
                   src={personal.profileImage}
-                  alt={personal.name}
+                  alt={`${personal.name} profile portrait`}
+                  loading="lazy"
+                  decoding="async"
                   onError={() => setImgError(true)}
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -69,7 +71,10 @@ export function About() {
                 const Icon = item.icon;
                 return (
                   <div key={item.label} className="about__highlight">
-                    <div className="about__highlight-label">{item.label}</div>
+                    <div className="about__highlight-label">
+                      <Icon size={15} aria-hidden="true" />
+                      {item.label}
+                    </div>
                     <div className="about__highlight-value">{item.value}</div>
                   </div>
                 );

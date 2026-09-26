@@ -2,6 +2,8 @@
 // CENTRALIZED PORTFOLIO DATA — Edit here to update everywhere
 // ============================================================
 
+const publicBaseUrl = import.meta.env.BASE_URL;
+
 export const personal = {
   name: "Manoj L E",
   firstName: "Manoj",
@@ -15,8 +17,8 @@ export const personal = {
   linkedin: "https://www.linkedin.com/in/manoj-l-e-8798a1428/",
   location: "Bengaluru, India",
   from: "Kalyanapura, Belur Taluk, Hassan District, Karnataka, India",
-  profileImage: "/profile.jpg",
-  resumeUrl: "/resume/Manoj-Le-Resume.pdf",
+  profileImage: `${publicBaseUrl}profile.jpg`,
+  resumeUrl: `${publicBaseUrl}resume/Manoj-Le-Resume.pdf`,
 };
 
 export const education = [

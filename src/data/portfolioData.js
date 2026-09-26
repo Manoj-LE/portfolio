@@ -3,18 +3,18 @@
 // ============================================================
 
 export const personal = {
-  name: "Manoj Le",
+  name: "Manoj L E",
   firstName: "Manoj",
-  headline: "B.Tech Student — Artificial Intelligence & Data Science",
-  subheadline: "Python • C • DSA • Machine Learning • Data Science",
-  about: `I am Manoj Le, a B.Tech student at Reva University, Bengaluru, specializing in Artificial Intelligence and Data Science. I'm from Hassan and driven by curiosity and a strong desire to learn. I have hands-on experience in C and Python, and I'm currently learning Data Structures & Algorithms (DSA) in Python. I deliver reliable work and always complete tasks I commit to. I communicate clearly, learn quickly, and enjoy building practical projects that solve real problems.`,
+  headline: "B.Tech Student — Artificial Intelligence & Data Science | Python, C | Aspiring DSA & ML Engineer",
+  subheadline: "Building Intelligent Solutions with Code & Curiosity",
+  about: `I am Manoj L E, a B.Tech student at Reva University, Bengaluru, specializing in Artificial Intelligence and Data Science. I am from Kalyanapura, Belur Taluk, Hassan District, Karnataka, and I am driven by curiosity and a strong desire to learn. I am developing my skills in Python, C, Data Structures & Algorithms, Machine Learning, and Data Analysis while building practical student projects and learning through Git and GitHub.`,
   availability: "Open to Internships • Collaborative Projects • Mentorship",
   email: "manojle452@gmail.com",
   emailHref: "mailto:manojle452@gmail.com",
   github: "https://github.com/Manoj-LE",
   linkedin: "https://www.linkedin.com/in/manoj-l-e-8798a1428/",
   location: "Bengaluru, India",
-  from: "Hassan, Karnataka",
+  from: "Kalyanapura, Belur Taluk, Hassan District, Karnataka, India",
   profileImage: "/profile.jpg",
   resumeUrl: "/resume/Manoj-Le-Resume.pdf",
 };
@@ -26,7 +26,6 @@ export const education = [
     institution: "Reva University",
     location: "Bengaluru, India",
     status: "Currently Pursuing",
-    graduationYear: "[INSERT YEAR]",
     description:
       "Studying core AI/DS fundamentals including machine learning, data analysis, algorithms, and software engineering principles.",
     highlights: [
@@ -150,7 +149,7 @@ export const projects = [
     title: "DSA-in-Python",
     tagline: "Data Structures & Algorithms",
     description:
-      "Implementations and explanations of common data structures and algorithms in Python, with a focus on problem solving and time/space complexity.",
+      "A student project containing Python implementations and explanations of data structures and algorithms, with a focus on practicing problem solving and understanding time and space complexity.",
     features: [
       "Arrays & Linked Lists",
       "Stacks & Queues",
@@ -170,7 +169,7 @@ export const projects = [
     title: "C-Basics-Projects",
     tagline: "C Programming Fundamentals",
     description:
-      "A collection of C programs covering programming fundamentals, pointers, dynamic memory, file handling, algorithms, and data structures.",
+      "A student collection of C programs covering programming fundamentals, pointers, dynamic memory, file handling, algorithms, and data structures.",
     features: [
       "Pointer Demonstrations",
       "File I/O Operations",
@@ -188,9 +187,9 @@ export const projects = [
     id: 3,
     number: "03",
     title: "Mini-ML-Project",
-    tagline: "End-to-End Machine Learning",
+    tagline: "End-to-End Machine Learning Practice",
     description:
-      "An end-to-end Machine Learning project demonstrating data cleaning, feature engineering, model training, and evaluation.",
+      "A student Machine Learning project for practicing data cleaning, feature engineering, model training, and evaluation in an end-to-end workflow.",
     features: [
       "Data Cleaning & Preprocessing",
       "Feature Engineering",
@@ -294,9 +293,12 @@ export const goals = [
 
 export const navLinks = [
   { label: "About", href: "#about" },
+  { label: "Strengths", href: "#strengths" },
   { label: "Skills", href: "#skills" },
+  { label: "Learning", href: "#learning" },
   { label: "Projects", href: "#projects" },
   { label: "Education", href: "#education" },
   { label: "Goals", href: "#goals" },
+  { label: "GitHub", href: "#github" },
   { label: "Contact", href: "#contact" },
 ];

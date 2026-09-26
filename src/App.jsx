@@ -31,8 +31,9 @@ function PortfolioApp() {
 
   return (
     <div className="portfolio-app">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <Navbar activeSection={activeSection} />
-      <main>
+      <main id="main-content">
         <Hero />
         <About />
         <Strengths />

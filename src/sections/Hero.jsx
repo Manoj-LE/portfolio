@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { personal } from '../data/portfolioData';
 import { Button } from '../components/Button';
-import { ArrowRight, Mail, Terminal, ChevronRight } from 'lucide-react';
+import { ArrowRight, Mail, Terminal } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 export function Hero() {
@@ -26,11 +26,11 @@ export function Hero() {
             <h1 className="hero__name">{personal.name}</h1>
 
             <p className="hero__headline">
-              <strong>B.Tech Student</strong> — Artificial Intelligence & Data Science
+              {personal.headline}
             </p>
 
             <p className="hero__description">
-              I’m a B.Tech student specializing in Artificial Intelligence & Data Science, building practical projects with Python and C while developing strong skills in Data Structures, Algorithms, Machine Learning, and Data Analysis.
+              {personal.subheadline}. I am building practical projects with Python and C while developing skills in Data Structures, Algorithms, Machine Learning, and Data Analysis.
             </p>
 
             <div className="hero__cta">

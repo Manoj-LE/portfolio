@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionTitle } from '../components/SectionTitle';
 import { personal } from '../data/portfolioData';
@@ -8,7 +8,26 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 export function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState(null); // null | 'success'
+  const [status, setStatus] = useState(null);
+  const [formError, setFormError] = useState('');
+  const [resumeAvailable, setResumeAvailable] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetch(personal.resumeUrl, { method: 'HEAD' })
+      .then((response) => {
+        const contentType = response.headers.get('content-type') || '';
+        if (!cancelled) setResumeAvailable(response.ok && contentType.includes('application/pdf'));
+      })
+      .catch(() => {
+        if (!cancelled) setResumeAvailable(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,13 +35,29 @@ export function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
 
-    // Mailto fallback or client simulation notification
-    const mailtoUrl = `mailto:${personal.email}?subject=Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message + '\n\nFrom: ' + formData.email)}`;
+    if (!name || !email || !message) {
+      setFormError('Please complete all fields before continuing.');
+      setStatus(null);
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormError('Please enter a valid email address.');
+      setStatus(null);
+      return;
+    }
+
+    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+    const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
+    const mailtoUrl = `mailto:${personal.email}?subject=${subject}&body=${body}`;
     window.location.href = mailtoUrl;
 
-    setStatus('success');
+    setFormError('');
+    setStatus('opening');
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -91,14 +126,20 @@ export function Contact() {
                 Send Email
               </Button>
 
-              <Button
-                href={personal.resumeUrl}
-                variant="secondary"
-                icon={FileText}
-                download
-              >
-                Download Resume
-              </Button>
+              {resumeAvailable ? (
+                <Button
+                  href={personal.resumeUrl}
+                  variant="secondary"
+                  icon={FileText}
+                  download
+                >
+                  Download Resume
+                </Button>
+              ) : (
+                <span className="btn btn-secondary btn-disabled" aria-disabled="true">
+                  Resume unavailable
+                </span>
+              )}
             </div>
           </motion.div>
 
@@ -119,6 +160,7 @@ export function Contact() {
                   required
                   placeholder="e.g. Rahul Sharma"
                   className="contact-form__input"
+                  autoComplete="name"
                   value={formData.name}
                   onChange={handleChange}
                 />
@@ -133,6 +175,7 @@ export function Contact() {
                   required
                   placeholder="e.g. rahul@example.com"
                   className="contact-form__input"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                 />
@@ -146,6 +189,7 @@ export function Contact() {
                   required
                   placeholder="Hi Manoj, I'd like to talk about an internship opportunity..."
                   className="contact-form__textarea"
+                  autoComplete="off"
                   value={formData.message}
                   onChange={handleChange}
                 />
@@ -155,9 +199,15 @@ export function Contact() {
                 Send Message
               </Button>
 
-              {status === 'success' && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--emerald)', fontSize: '0.85rem', marginTop: '0.5rem' }}>
-                  <CheckCircle2 size={16} /> Opening your default email client...
+              {formError && (
+                <div className="contact-form__status contact-form__status--error" role="alert">
+                  {formError}
+                </div>
+              )}
+
+              {status === 'opening' && (
+                <div className="contact-form__status" role="status" aria-live="polite">
+                  <CheckCircle2 size={16} /> Your email client is opening...
                 </div>
               )}
 

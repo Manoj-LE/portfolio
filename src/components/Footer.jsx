@@ -1,7 +1,5 @@
 import React from 'react';
 import { personal, navLinks } from '../data/portfolioData';
-import { Heart, Code2 } from 'lucide-react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();

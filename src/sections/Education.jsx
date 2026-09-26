@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { SectionTitle } from '../components/SectionTitle';
 import { education } from '../data/portfolioData';
-import { GraduationCap, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
+import { MapPin, Calendar, CheckCircle2 } from 'lucide-react';
 
 export function Education() {
   return (
@@ -39,10 +39,12 @@ export function Education() {
                   {item.status}
                 </span>
 
-                <span className="education-item__meta-tag">
-                  <Calendar size={14} />
-                  Expected Graduation: {item.graduationYear}
-                </span>
+                {item.graduationYear ? (
+                  <span className="education-item__meta-tag">
+                    <Calendar size={14} />
+                    Expected Graduation: {item.graduationYear}
+                  </span>
+                ) : null}
               </div>
 
               <p className="education-item__desc">{item.description}</p>
